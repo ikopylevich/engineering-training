@@ -11,6 +11,9 @@ const jiraLinks = [
     "https://totalwine.atlassian.net/browse/TT-18",
     "https://totalwine.atlassian.net/browse/TT-19",
 ];
+const iterateJiraLinks = jiraLinks.forEach((link) => {
+    console.log(link);
+});
 const jiraTitles = [
     "Create a public repository under your GitHub account",
     "Create a new script file, and import it into index.html and add a console log",
@@ -19,8 +22,9 @@ const jiraTitles = [
     "JavaScript: Functions - Write a function to toggle hidden class on modal",
 ];
 
-console.log("jiraTitles", jiraTitles);
-console.log("jiraLinks", jiraLinks);
+const iterateJiraTitles = jiraTitles.forEach((title) => {
+    console.log(title);
+});
 
 modalButton.addEventListener("click", function () {
     console.log("clicked button!");
