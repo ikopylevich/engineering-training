@@ -34,6 +34,10 @@ const iterateJiraTitles = jiraTitles.forEach((title) => {
     console.log(title);
 });
 
+console.log("jiraTitles", jiraTitles);
+console.log("jiraLinks", jiraLinks);
+console.log("jiraObjects", jiraObject);
+
 modalButton.addEventListener("click", function () {
     console.log("clicked button!");
     modalContainer.classList.toggle("hidden");
