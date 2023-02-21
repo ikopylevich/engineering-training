@@ -22,7 +22,7 @@ const jiraTitles = [
 const jirasArray = [];
 
 for (let i = 0; i < jiraLinks.length; i++) {
-    irasArray.push({
+    jirasArray.push({
         link: jiraLinks[i],
         title: jiraTitles[i]
     });
