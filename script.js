@@ -19,10 +19,10 @@ const jiraTitles = [
     "JavaScript: Functions - Write a function to toggle hidden class on modal",
 ];
 
-const jjirasArray = [];
+const jirasArray = [];
 
 for (let i = 0; i < jiraLinks.length; i++) {
-    jirasArray.push({
+    irasArray.push({
         link: jiraLinks[i],
         title: jiraTitles[i]
     });
@@ -36,7 +36,7 @@ const iterateJiraTitles = jiraTitles.forEach((title) => {
 
 console.log("jiraTitles", jiraTitles);
 console.log("jiraLinks", jiraLinks);
-console.log("jjirasArray", jirasArray);
+console.log("jirasArray", jirasArray);
 
 modalButton.addEventListener("click", function () {
     console.log("clicked button!");
