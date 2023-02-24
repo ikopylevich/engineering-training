@@ -24,19 +24,26 @@ const jirasArray = [];
 for (let i = 0; i < jiraLinks.length; i++) {
     jirasArray.push({
         link: jiraLinks[i],
-        title: jiraTitles[i]
+        title: jiraTitles[i],
     });
 }
-const iterateJiraLinks = jiraLinks.forEach((link) => {
-    console.log(link);
+jirasArray.forEach((element) => {
+    console.log("jira: ", element);
+    let listItem = document.createElement("li");
+    let listElement = document.querySelector(".grid-container");
+    listElement.prepend(listItem);
 });
-const iterateJiraTitles = jiraTitles.forEach((title) => {
-    console.log(title);
+
+const iterateLinks = jiraLinks.forEach((links) => {
+    console.log(links);
+});
+const iterateTitle = jiraTitles.forEach((titles) => {
+    console.log(titles);
 });
 
 console.log("jiraTitles", jiraTitles);
 console.log("jiraLinks", jiraLinks);
-console.log("jirasArray", jirasArray);
+// console.log("jirasArray", jirasArray);
 
 modalButton.addEventListener("click", function () {
     console.log("clicked button!");
@@ -47,3 +54,4 @@ closeModalButton[0].addEventListener("click", function () {
     console.log("clicked close modal button!");
 });
 console.log("modalButton ", modalButton);
+
