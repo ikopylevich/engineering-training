@@ -31,7 +31,14 @@ jirasArray.forEach((element) => {
     console.log("jira: ", element);
     let listItem = document.createElement("li");
     let listElement = document.querySelector(".grid-container");
-    listElement.prepend(listItem);
+
+    const myLiterals = `<li class="item">
+   <a href=${element.link}>
+   <i class="bi bi-check-circle-fill"></i>${element.title}</a>
+   </li>`;
+
+    listItem.innerHTML = myLiterals; // Assigning myLiterals to innerHTML of listItem
+    listElement.append(listItem);   // Appending listItem to listElement
 });
 
 const iterateLinks = jiraLinks.forEach((links) => {
