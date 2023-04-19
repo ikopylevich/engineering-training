@@ -29,23 +29,26 @@ for (let i = 0; i < jiraLinks.length; i++) {
     });
 }
 function renderData() {
-    let response = "";
-    let listElement = document.querySelector(".grid-container");
-    jirasArray.forEach((element) => {
-        response += `<li class="item">
-        
-     <a href=${element.link}>
+    return new Promise((resolve, reject) => {
+        let response = "";
+        jirasArray.forEach((element) => {
+            response += `<li class="item">
+        <a href=${element.link}>
      <i class="bi bi-check-circle-fill"></i>${element.title}</a></li>`;
+        });
+        resolve(response);
     });
-    listElement.innerHTML = response; // Assigning myLiterals to innerHTML of response
 }
 
 function loadData() {
+    let gridContainer = document.querySelector(".grid-container");
     setTimeout(() => {
         console.log("Data Loaded");
-        modalContainer.classList.toggle("hidden");
         if (dataLoaded == true) {
-            renderData();
+            renderData().then((response) => {
+                gridContainer.innerHTML = response;
+                modalContainer.classList.toggle("hidden");
+            });
             dataLoaded = false;
         }
 
