@@ -31,10 +31,10 @@ for (let i = 0; i < jiraLinks.length; i++) {
 function renderData() {
     return new Promise((resolve, reject) => {
         let response = "";
-        jirasArray.forEach((element) => {
+        jirasArray.forEach(({ link, title }) => {
             response += `<li class="item">
-        <a href=${element.link}>
-     <i class="bi bi-check-circle-fill"></i>${element.title}</a></li>`;
+        <a href=${link}>
+     <i class="bi bi-check-circle-fill"></i>${title}</a></li>`;
         });
         resolve(response);
     });
