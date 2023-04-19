@@ -3,6 +3,7 @@ console.log("Engineering Training");
 const modalButton = document.getElementById('modalButton');
 const modalContainer = document.getElementById('modalContainer');
 const closeModalButton = document.getElementsByClassName("close-modal-button");
+let dataLoaded = true;
 
 const jiraLinks = [
     "https://totalwine.atlassian.net/browse/TT-2",
@@ -27,34 +28,41 @@ for (let i = 0; i < jiraLinks.length; i++) {
         title: jiraTitles[i],
     });
 }
-jirasArray.forEach((element) => {
-    console.log("jira: ", element);
-    let listItem = document.createElement("li");
-    let listElement = document.querySelector(".grid-container");
+function renderData() {
+    jirasArray.forEach((element) => {
+        console.log("jira: ", element);
+        let listItem = document.createElement("li");
+        let listElement = document.querySelector(".grid-container");
 
-    const myLiterals = `<li class="item">
-   <a href=${element.link}>
-   <i class="bi bi-check-circle-fill"></i>${element.title}</a>
-   </li>`;
+        const myLiterals = `<li class="item">
+     <a href=${element.link}>
+     <i class="bi bi-check-circle-fill"></i>${element.title}</a></li>`;
 
-    listItem.innerHTML = myLiterals; // Assigning myLiterals to innerHTML of listItem
-    listElement.append(listItem); // Appending listItem to listElement
-});
+        listItem.innerHTML = myLiterals; // Assigning myLiterals to innerHTML of listItem
+        listElement.append(listItem); // Appending listItem to listElement
+    });
+}
 
 function loadData() {
     setTimeout(() => {
         console.log("Data Loaded");
+        modalContainer.classList.toggle("hidden");
+        if (dataLoaded == true) {
+            renderData();
+            dataLoaded = false;
+        }
+
     }, 1000);
 }
 
-modalButton.addEventListener("click", function () {
-    console.log("clicked button!");
-    modalContainer.classList.toggle("hidden");
-});
-closeModalButton[0].addEventListener("click", function () {
+modalButton.addEventListener("click", () => {
+    console.log("clicked button!!");
     modalContainer.classList.toggle("hidden");
     loadData();
-    console.log("clicked close modal button!");
 });
-console.log("modalButton ", modalButton);
 
+closeModalButton[0].addEventListener("click", () => {
+    modalContainer.classList.toggle("hidden");
+});
+console.log("modalButton : ", modalButton);
+console.log("closeModalButton : ", closeModalButton);
