@@ -29,18 +29,15 @@ for (let i = 0; i < jiraLinks.length; i++) {
     });
 }
 function renderData() {
+    let response = "";
+    let listElement = document.querySelector(".grid-container");
     jirasArray.forEach((element) => {
-        console.log("jira: ", element);
-        let listItem = document.createElement("li");
-        let listElement = document.querySelector(".grid-container");
-
-        const myLiterals = `<li class="item">
+        response += `<li class="item">
+        
      <a href=${element.link}>
      <i class="bi bi-check-circle-fill"></i>${element.title}</a></li>`;
-
-        listItem.innerHTML = myLiterals; // Assigning myLiterals to innerHTML of listItem
-        listElement.append(listItem); // Appending listItem to listElement
     });
+    listElement.innerHTML = response; // Assigning myLiterals to innerHTML of response
 }
 
 function loadData() {
