@@ -28,36 +28,38 @@ for (let i = 0; i < jiraLinks.length; i++) {
         title: jiraTitles[i],
     });
 }
-function renderData() {
-    return new Promise((resolve, reject) => {
-        let response = "";
-        jirasArray.forEach(({ link, title }) => {
-            response += `<li class="item">
+
+const utils = {
+    renderData: function () {
+        return new Promise((resolve, reject) => {
+            let response = "";
+            jirasArray.forEach(({ link, title }) => {
+                response += `<li class="item">
         <a href=${link}>
      <i class="bi bi-check-circle-fill"></i>${title}</a></li>`;
+            });
+            resolve(response);
         });
-        resolve(response);
-    });
-}
+    },
+    loadData: function () {
+        let gridContainer = document.querySelector(".grid-container");
+        setTimeout(() => {
+            console.log("Data Loaded");
+            renderData().then((response) => {
+                dataLoaded = true;
+                gridContainer.innerHTML = response;
+                modalContainer.classList.toggle("hidden");
+            });
 
-function loadData() {
-    let gridContainer = document.querySelector(".grid-container");
-    setTimeout(() => {
-        console.log("Data Loaded");
-        renderData().then((response) => {
-            dataLoaded = true;
-            gridContainer.innerHTML = response;
-            modalContainer.classList.toggle("hidden");
-        });
-
-    }, 1000);
+        }, 1000);
+    }
 }
 
 modalButton.addEventListener("click", () => {
     console.log("clicked button!!");
     if (dataLoaded == false) {
         modalContainer.classList.toggle("hidden");
-        loadData();
+        utils.loadData();
     }
 });
 
