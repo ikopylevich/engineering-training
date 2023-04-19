@@ -3,7 +3,7 @@ console.log("Engineering Training");
 const modalButton = document.getElementById('modalButton');
 const modalContainer = document.getElementById('modalContainer');
 const closeModalButton = document.getElementsByClassName("close-modal-button");
-let dataLoaded = true;
+let dataLoaded = false;
 
 const jiraLinks = [
     "https://totalwine.atlassian.net/browse/TT-2",
@@ -44,21 +44,21 @@ function loadData() {
     let gridContainer = document.querySelector(".grid-container");
     setTimeout(() => {
         console.log("Data Loaded");
-        if (dataLoaded == true) {
-            renderData().then((response) => {
-                gridContainer.innerHTML = response;
-                modalContainer.classList.toggle("hidden");
-            });
-            dataLoaded = false;
-        }
+        renderData().then((response) => {
+            dataLoaded = true;
+            gridContainer.innerHTML = response;
+            modalContainer.classList.toggle("hidden");
+        });
 
     }, 1000);
 }
 
 modalButton.addEventListener("click", () => {
     console.log("clicked button!!");
-    modalContainer.classList.toggle("hidden");
-    loadData();
+    if (dataLoaded == false) {
+        modalContainer.classList.toggle("hidden");
+        loadData();
+    }
 });
 
 closeModalButton[0].addEventListener("click", () => {
