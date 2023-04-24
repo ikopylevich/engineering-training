@@ -52,8 +52,8 @@ const utils = {
             });
 
         }, 1000);
-    }
-}
+    },
+};
 
 modalButton.addEventListener("click", () => {
     console.log("clicked button!!");
