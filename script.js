@@ -19,24 +19,22 @@ const jiraTitles = [
     "JavaScript: Event Listeners - Add Toggle Button Inside of Modal",
     "JavaScript: Functions - Write a function to toggle hidden class on modal",
 ];
-
-const jirasArray = [];
-
-for (let i = 0; i < jiraLinks.length; i++) {
-    jirasArray.push({
-        link: jiraLinks[i],
-        title: jiraTitles[i],
-    });
+class JiraHandler {
+    constructor(links, titles) {
+        this.links = links;
+        this.titles = titles;
+    }
 }
+const jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
 
 const utils = {
     renderData: function () {
         return new Promise((resolve, reject) => {
             let response = "";
-            jirasArray.forEach(({ link, title }) => {
+            jiraHandler.links.forEach((link, index) => {
                 response += `<li class="item">
         <a href=${link}>
-     <i class="bi bi-check-circle-fill"></i>${title}</a></li>`;
+     <i class="bi bi-check-circle-fill"></i>${jiraHandler.titles[index]}</a></li>`;
             });
             resolve(response);
         });
@@ -45,7 +43,7 @@ const utils = {
         let gridContainer = document.querySelector(".grid-container");
         setTimeout(() => {
             console.log("Data Loaded");
-            renderData().then((response) => {
+            utils.renderData().then((response) => {
                 dataLoaded = true;
                 gridContainer.innerHTML = response;
                 modalContainer.classList.toggle("hidden");
