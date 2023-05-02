@@ -10,7 +10,7 @@
         display: none;
    }
     li:hover, li:active {
-        background-color: #aaaaaa;
+        background-color: #d7d2d2;
    }
     .grid-container {
         display: grid;

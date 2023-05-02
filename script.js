@@ -33,7 +33,7 @@ const utils = {
             let response = "";
             jiraHandler.links.forEach((links, index) => {
                 response += `<li class="item">
-        <a href=${jiraHandler.links}>
+        <a href=${jiraHandler.links[index]}>
      <i class="bi bi-check-circle-fill"></i>${jiraHandler.titles[index]}</a></li>`;
             });
             resolve(response);
