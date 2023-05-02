@@ -31,9 +31,9 @@ const utils = {
     renderData: function () {
         return new Promise((resolve, reject) => {
             let response = "";
-            jiraHandler.links.forEach((link, index) => {
+            jiraHandler.links.forEach((links, index) => {
                 response += `<li class="item">
-        <a href=${jiraHandler.link}>
+        <a href=${jiraHandler.links}>
      <i class="bi bi-check-circle-fill"></i>${jiraHandler.titles[index]}</a></li>`;
             });
             resolve(response);
