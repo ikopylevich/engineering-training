@@ -23,6 +23,18 @@ class JiraHandler {
     constructor(links, titles) {
         this.links = links;
         this.titles = titles;
+        this.jirasObject = [];
+        this.createJiraObject();
+    }
+    createJiraObject() {
+        this.links.forEach((link, index) => {
+            const jira = {
+                link: this.links[index],
+                title: this.titles[index],
+            }
+            this.jirasObject.push(jira);
+        })
+        return this.jirasObject;
     }
 }
 const jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
@@ -31,10 +43,10 @@ const utils = {
     renderData: function () {
         return new Promise((resolve, reject) => {
             let response = "";
-            jiraHandler.links.forEach((links, index) => {
+            jiraHandler.jirasObject.forEach((jira) => {
                 response += `<li class="item">
-        <a href=${jiraHandler.links[index]}>
-     <i class="bi bi-check-circle-fill"></i>${jiraHandler.titles[index]}</a></li>`;
+        <a href=${jira.link}>
+     <i class="bi bi-check-circle-fill"></i>${jjira.title}</a></li>`;
             });
             resolve(response);
         });
