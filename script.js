@@ -44,9 +44,10 @@ const utils = {
         return new Promise((resolve, reject) => {
             let response = "";
             jiraHandler.jirasObject.forEach((jira) => {
+                const { link, icon, title } = jira
                 response += `<li class="item">
-        <a href=${jira.link}>
-     <i class="bi bi-check-circle-fill"></i>${jjira.title}</a></li>`;
+        <a href=${link}>
+        <i class="${icon}"></i>${title}</a></li>`;
             });
             resolve(response);
         });
