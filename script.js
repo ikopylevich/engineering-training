@@ -46,9 +46,10 @@ const utils = {
             jiraHandler.jirasObject.forEach((jira) => {
                 const { link, icon, title } = jira;
                 response += `<li class="item">
-        <a href=${link}>
-        <i class="bi bi-check-circle-fill"></i>${title}</a>
-    <i class="${icon}"></i>${title}</a>></li>`;
+                <a href=${link}>
+                <i class="bi bi-check-circle-fill">${title}</i>
+                </a>
+        </li>`;
             });
             resolve(response);
         });
