@@ -3,7 +3,7 @@ console.log("Engineering Training");
 const modalButton = document.getElementById('modalButton');
 const modalContainer = document.getElementById('modalContainer');
 const closeModalButton = document.getElementsByClassName("close-modal-button");
-let dataLoaded = false;
+
 
 const jiraLinks = [
     "https://totalwine.atlassian.net/browse/TT-2",
@@ -60,19 +60,18 @@ const utils = {
                 const { link, icon, title } = jira;
                 response += `<li class="item">
                 <a href=${link}>
-                <i class="bi bi-check-circle-fill">${title}</i>
-                </a>
-        </li>`;
+                <i class="${icon}"></i>${title}</a>
+                </li>`;
             });
             resolve(response);
         });
     },
-    loadData: function () {
+    loadData: function (callback) {
         let gridContainer = document.querySelector(".grid-container");
         setTimeout(() => {
             console.log("Data Loaded");
             utils.renderData().then((response) => {
-                dataLoaded = true;
+                callback();
                 gridContainer.innerHTML = response;
                 modalContainer.classList.toggle("hidden");
             });
@@ -81,13 +80,20 @@ const utils = {
     },
 };
 
-modalButton.addEventListener("click", () => {
-    console.log("clicked button!!");
-    if (dataLoaded == false) {
-        modalContainer.classList.toggle("hidden");
-        utils.loadData();
-    }
-});
+function initModalButton() {
+    let dataLoaded = false;
+    modalButton.addEventListener("click", () => {
+        console.log("clicked button!!");
+        if (dataLoaded == false) {
+            modalContainer.classList.toggle("hidden");
+            utils.loadData(() => {
+                dataLoaded = true;
+            });
+        }
+    });
+}
+
+initModalButton();
 
 closeModalButton[0].addEventListener("click", () => {
     modalContainer.classList.toggle("hidden");
