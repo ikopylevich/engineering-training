@@ -19,6 +19,17 @@ const jiraTitles = [
     "JavaScript: Event Listeners - Add Toggle Button Inside of Modal",
     "JavaScript: Functions - Write a function to toggle hidden class on modal",
 ];
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+const jiraTemplate = {
+    icon: "bi bi-check-circle-fill"
+};
+const errorJiraTemplate = {
+    icon: "bi bi-x-circle"
+};
 class JiraHandler {
     constructor(links, titles) {
         this.links = links;
@@ -28,7 +39,9 @@ class JiraHandler {
     }
     createJiraObject() {
         this.links.forEach((link, index) => {
+            const template = getRandomIntInclusive(0, 2) > 0 ? jiraTemplate : errorJiraTemplate;
             const jira = {
+                ...template,
                 link: this.links[index],
                 title: this.titles[index],
             }
