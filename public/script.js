@@ -83,8 +83,13 @@
 
     function initModalButton() {
         let dataLoaded = false;
-        modalButton.addEventListener("click", () => {
-            console.log("clicked button!!");
+        modalButton.addEventListener("click", async () => {
+            console.log("Open Modal button is clicked!!!");
+            await fetch('/getJiraTickets')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
             if (dataLoaded == false) {
                 modalContainer.classList.toggle("hidden");
                 utils.loadData(() => {
