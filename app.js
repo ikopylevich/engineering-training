@@ -4,14 +4,12 @@ const app = express()
 const port = 3000
 const router = express.Router();
 const { Router } = require('express');
-
-
-
-// respond with "hello world" when a GET request is made to the homepage
+const dataHandler = require('./dataHandler.js');
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 router.get('/getJiraTickets', (req, res) => {
+    let jirasObject = { jirasObject: dataHandler.jirasObject };
     res.json({ "jirasObject": [] });
 })
 app.use('/', router);
