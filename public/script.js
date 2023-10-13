@@ -54,8 +54,9 @@
     const jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
 
     const utils = {
-        renderData: function () {
+        async renderData() {
             return new Promise((resolve, reject) => {
+
                 let response = "";
                 jiraHandler.jirasObject.forEach((jira) => {
                     const { link, icon, title } = jira;
@@ -82,21 +83,26 @@
     };
 
     function initModalButton() {
-        let dataLoaded = false;
-        modalButton.addEventListener("click", async () => {
-            console.log("Open Modal button is clicked!!!");
-            await fetch('/getJiraTickets')
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                })
-            if (dataLoaded == false) {
-                modalContainer.classList.toggle("hidden");
-                utils.loadData(() => {
-                    dataLoaded = true;
-                });
-            }
-        });
+        return new Promise((resolve, reject) => {
+
+
+            let dataLoaded = false;
+            modalButton.addEventListener("click", async () => {
+                console.log("Open Modal button is clicked!!!");
+                await fetch('/getJiraTickets')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+                if (dataLoaded == false) {
+                    modalContainer.classList.toggle("hidden");
+                    utils.loadData(() => {
+                        resolve();
+                        dataLoaded = true;
+                    });
+                }
+            });
+        })
     }
 
     initModalButton();
